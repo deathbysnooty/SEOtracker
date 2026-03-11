@@ -511,7 +511,12 @@ tr:hover td { background: #fafbfd; }
 
   function findRow(kw, dev, list) {
     if (!list) return null;
-    return list.find(r => r.keyword === kw && r.device === dev) || null;
+    return list.find(r => r.keyword === kw && r.device === dev && r.is_my_domain) || null;
+  }
+
+  function findDomainRow(kw, dev, domain, list) {
+    if (!list) return null;
+    return list.find(r => r.keyword === kw && r.device === dev && r.domain === domain) || null;
   }
 
   function bestComp(kw, dev, list) {
@@ -778,8 +783,8 @@ tr:hover td { background: #fafbfd; }
       const dp = [], mp = [];
       for (const run of history) {
         const rnk = run.rankings || [];
-        const rd = rnk.find(r => r.keyword === kw && r.device === 'desktop');
-        const rm = rnk.find(r => r.keyword === kw && r.device === 'mobile');
+        const rd = rnk.find(r => r.keyword === kw && r.device === 'desktop' && r.is_my_domain);
+        const rm = rnk.find(r => r.keyword === kw && r.device === 'mobile' && r.is_my_domain);
         dp.push(rd && rd.position != null ? rd.position : null);
         mp.push(rm && rm.position != null ? rm.position : null);
       }
