@@ -1,0 +1,43 @@
+{
+  "my_domain": "ibtuition.sg",
+  "known_competitors": [
+    "axiomeducation.sg",
+    "mindlab-international.com",
+    "eipimath.com",
+    "ibsuper.com.sg"
+  ],
+  "keywords": [
+    "ib math tuition",
+    "ib math tuition singapore",
+    "best ib math tuition",
+    "ib physics tuition",
+    "best ib physics tuition",
+    "ib physics tuition singapore",
+    "ib tuition singapore",
+    "ib chemistry tuition",
+    "ib english tuition",
+    "ib economics tuition",
+    "ib biology tuition",
+    "ib chinese tuition"
+  ],
+  "gl": "sg",
+  "hl": "en",
+  "location": "Singapore",
+  "devices": ["desktop", "mobile"],
+  "top_n_for_discovery": 5,
+  "discovery_enabled": true,
+  "github_pages_url": "",
+  "serpapi_monthly_limit": 100,
+  "redirect_domains": [
+    {
+      "old_domain": "ibmath.sg",
+      "redirects_to": "ibtuition.sg",
+      "tracking_active": true
+    },
+    {
+      "old_domain": "ibmathandphysics.sg",
+      "redirects_to": "ibtuition.sg",
+      "tracking_active": true
+    }
+  ]
+}

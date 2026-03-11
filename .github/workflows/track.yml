@@ -1,0 +1,64 @@
+name: SEO Rank Tracker
+
+on:
+  schedule:
+    # 7:00 AM SGT (UTC+8) = 23:00 UTC previous day
+    - cron: '0 23 * * *'
+    # 1:00 PM SGT = 05:00 UTC
+    - cron: '0 5 * * *'
+    # 7:00 PM SGT = 11:00 UTC
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Restore rankings database from cache
+        uses: actions/cache@v4
+        with:
+          path: rankings.db
+          key: rankings-db
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run SEO tracker
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+        run: python tracker.py
+
+      - name: Export data for dashboard
+        run: python export_data.py
+
+      - name: Send Telegram report
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python send_telegram.py
+
+      - name: Save rankings database to cache
+        uses: actions/cache/save@v4
+        with:
+          path: rankings.db
+          key: rankings-db-${{ github.run_id }}
+
+      - name: Commit and push dashboard data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data.json
+          git diff --staged --quiet || git commit -m "Update SEO dashboard data [skip ci]"
+          git push

@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "last_run": null,
+    "next_run": null,
+    "run_count_today": 0,
+    "api_used_this_month": 0,
+    "api_limit": 100,
+    "api_percent": 0
+  },
+  "rankings": {
+    "latest": [],
+    "previous": [],
+    "history_14_runs": []
+  },
+  "url_changes": [],
+  "discovered_competitors": {
+    "unalerted": [],
+    "all": []
+  },
+  "redirect": {
+    "health": [],
+    "sightings_latest_run": [],
+    "consolidation_by_keyword": [],
+    "overall_consolidation_pct": 0,
+    "history_30_days": []
+  },
+  "run_log": []
+}
