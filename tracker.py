@@ -182,7 +182,22 @@ def fetch_serp(keyword, device, config):
 
     search = GoogleSearch(params)
     results = search.get_dict()
-    return results.get("organic_results", [])
+
+    # Check for API errors
+    if "error" in results:
+        raise RuntimeError(f"SerpApi error: {results['error']}")
+
+    # Debug: print search metadata
+    meta = results.get("search_metadata", {})
+    print(f"  SerpApi status: {meta.get('status', 'unknown')}")
+    print(f"  SerpApi ID: {meta.get('id', 'none')}")
+    print(f"  Total results: {results.get('search_information', {}).get('total_results', 'N/A')}")
+
+    organic = results.get("organic_results", [])
+    if not organic:
+        print(f"  WARNING: No organic results! Keys in response: {list(results.keys())}")
+
+    return organic
 
 
 # ---------------------------------------------------------------------------
