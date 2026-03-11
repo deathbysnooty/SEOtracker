@@ -1,9 +1,9 @@
 {
   "meta": {
-    "last_run": "2026-03-11T15:58:22Z",
+    "last_run": "2026-03-11T16:03:56Z",
     "next_run": "2026-03-12T07:00:00+08:00",
-    "run_count_today": 2,
-    "api_used_this_month": 48,
+    "run_count_today": 0,
+    "api_used_this_month": 24,
     "api_limit": 10000,
     "api_percent": 0
   },
@@ -21,7 +21,7 @@
     "health": [
       {
         "id": 3,
-        "checked_at": "2026-03-11T15:58:24Z",
+        "checked_at": "2026-03-11T16:03:58Z",
         "old_domain": "ibmath.sg",
         "http_status": 301,
         "final_destination_url": "https://ibtuition.sg/ib-math-tuition/",
@@ -31,7 +31,7 @@
       },
       {
         "id": 4,
-        "checked_at": "2026-03-11T15:58:24Z",
+        "checked_at": "2026-03-11T16:03:58Z",
         "old_domain": "ibmathandphysics.sg",
         "http_status": 301,
         "final_destination_url": "https://ibtuition.sg/",
@@ -42,21 +42,8 @@
     ],
     "sightings_latest_run": [
       {
-        "id": 49,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib math tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 50,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 1,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib math tuition",
         "device": "desktop",
@@ -68,8 +55,34 @@
         "status": "neither"
       },
       {
-        "id": 51,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 2,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib math tuition",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 3,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib math tuition",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 4,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib math tuition",
         "device": "mobile",
@@ -81,34 +94,8 @@
         "status": "neither"
       },
       {
-        "id": 52,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib math tuition",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 53,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib math tuition singapore",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 54,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 5,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib math tuition singapore",
         "device": "desktop",
@@ -120,8 +107,34 @@
         "status": "neither"
       },
       {
-        "id": 55,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 6,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib math tuition singapore",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 7,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib math tuition singapore",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 8,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib math tuition singapore",
         "device": "mobile",
@@ -133,34 +146,8 @@
         "status": "neither"
       },
       {
-        "id": 56,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib math tuition singapore",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 57,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "best ib math tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 58,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 9,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "best ib math tuition",
         "device": "desktop",
@@ -172,8 +159,34 @@
         "status": "neither"
       },
       {
-        "id": 59,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 10,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "best ib math tuition",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 11,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "best ib math tuition",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 12,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "best ib math tuition",
         "device": "mobile",
@@ -185,34 +198,8 @@
         "status": "neither"
       },
       {
-        "id": 60,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "best ib math tuition",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 61,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib physics tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 62,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 13,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib physics tuition",
         "device": "desktop",
@@ -224,8 +211,34 @@
         "status": "neither"
       },
       {
-        "id": 63,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 14,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib physics tuition",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 15,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib physics tuition",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 16,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib physics tuition",
         "device": "mobile",
@@ -237,34 +250,8 @@
         "status": "neither"
       },
       {
-        "id": 64,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib physics tuition",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 65,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "best ib physics tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 66,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 17,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "best ib physics tuition",
         "device": "desktop",
@@ -276,8 +263,34 @@
         "status": "neither"
       },
       {
-        "id": 67,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 18,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "best ib physics tuition",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 19,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "best ib physics tuition",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 20,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "best ib physics tuition",
         "device": "mobile",
@@ -289,34 +302,8 @@
         "status": "neither"
       },
       {
-        "id": 68,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "best ib physics tuition",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 69,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib physics tuition singapore",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 70,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 21,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib physics tuition singapore",
         "device": "desktop",
@@ -328,8 +315,34 @@
         "status": "neither"
       },
       {
-        "id": 71,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 22,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib physics tuition singapore",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 23,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib physics tuition singapore",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 24,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib physics tuition singapore",
         "device": "mobile",
@@ -341,34 +354,8 @@
         "status": "neither"
       },
       {
-        "id": 72,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib physics tuition singapore",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 73,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib tuition singapore",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 74,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 25,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib tuition singapore",
         "device": "desktop",
@@ -380,8 +367,34 @@
         "status": "neither"
       },
       {
-        "id": 75,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 26,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib tuition singapore",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 27,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib tuition singapore",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 28,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib tuition singapore",
         "device": "mobile",
@@ -393,34 +406,8 @@
         "status": "neither"
       },
       {
-        "id": 76,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib tuition singapore",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 77,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib chemistry tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 78,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 29,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib chemistry tuition",
         "device": "desktop",
@@ -432,8 +419,34 @@
         "status": "neither"
       },
       {
-        "id": 79,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 30,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib chemistry tuition",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 31,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib chemistry tuition",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 32,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib chemistry tuition",
         "device": "mobile",
@@ -445,34 +458,8 @@
         "status": "neither"
       },
       {
-        "id": 80,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib chemistry tuition",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 81,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib english tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 82,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 33,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib english tuition",
         "device": "desktop",
@@ -484,8 +471,34 @@
         "status": "neither"
       },
       {
-        "id": 83,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 34,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib english tuition",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 35,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib english tuition",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 36,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib english tuition",
         "device": "mobile",
@@ -497,34 +510,8 @@
         "status": "neither"
       },
       {
-        "id": 84,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib english tuition",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 85,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib economics tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 86,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 37,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib economics tuition",
         "device": "desktop",
@@ -536,8 +523,34 @@
         "status": "neither"
       },
       {
-        "id": 87,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 38,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib economics tuition",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 39,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib economics tuition",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 40,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib economics tuition",
         "device": "mobile",
@@ -549,34 +562,8 @@
         "status": "neither"
       },
       {
-        "id": 88,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib economics tuition",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 89,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib biology tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 90,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 41,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib biology tuition",
         "device": "desktop",
@@ -588,8 +575,34 @@
         "status": "neither"
       },
       {
-        "id": 91,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 42,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib biology tuition",
+        "device": "desktop",
+        "old_domain": "ibmath.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 43,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib biology tuition",
+        "device": "mobile",
+        "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 44,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib biology tuition",
         "device": "mobile",
@@ -601,34 +614,8 @@
         "status": "neither"
       },
       {
-        "id": 92,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib biology tuition",
-        "device": "mobile",
-        "old_domain": "ibmathandphysics.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 93,
-        "run_time": "2026-03-11T15:58:22Z",
-        "date": "2026-03-11",
-        "keyword": "ib chinese tuition",
-        "device": "desktop",
-        "old_domain": "ibmath.sg",
-        "position": null,
-        "url": null,
-        "main_domain_position": null,
-        "cannibalization_gap": null,
-        "status": "neither"
-      },
-      {
-        "id": 94,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 45,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib chinese tuition",
         "device": "desktop",
@@ -640,11 +627,11 @@
         "status": "neither"
       },
       {
-        "id": 95,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 46,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib chinese tuition",
-        "device": "mobile",
+        "device": "desktop",
         "old_domain": "ibmath.sg",
         "position": null,
         "url": null,
@@ -653,12 +640,25 @@
         "status": "neither"
       },
       {
-        "id": 96,
-        "run_time": "2026-03-11T15:58:22Z",
+        "id": 47,
+        "run_time": "2026-03-11T15:48:22Z",
         "date": "2026-03-11",
         "keyword": "ib chinese tuition",
         "device": "mobile",
         "old_domain": "ibmathandphysics.sg",
+        "position": null,
+        "url": null,
+        "main_domain_position": null,
+        "cannibalization_gap": null,
+        "status": "neither"
+      },
+      {
+        "id": 48,
+        "run_time": "2026-03-11T15:48:22Z",
+        "date": "2026-03-11",
+        "keyword": "ib chinese tuition",
+        "device": "mobile",
+        "old_domain": "ibmath.sg",
         "position": null,
         "url": null,
         "main_domain_position": null,
@@ -677,7 +677,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "best ib math tuition",
@@ -689,7 +689,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "best ib physics tuition",
@@ -701,7 +701,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "best ib physics tuition",
@@ -713,7 +713,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib biology tuition",
@@ -725,7 +725,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib biology tuition",
@@ -737,7 +737,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib chemistry tuition",
@@ -749,7 +749,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib chemistry tuition",
@@ -761,7 +761,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib chinese tuition",
@@ -773,7 +773,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib chinese tuition",
@@ -785,7 +785,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib economics tuition",
@@ -797,7 +797,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib economics tuition",
@@ -809,7 +809,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib english tuition",
@@ -821,7 +821,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib english tuition",
@@ -833,7 +833,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib math tuition",
@@ -845,7 +845,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib math tuition",
@@ -857,7 +857,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib math tuition singapore",
@@ -869,7 +869,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib math tuition singapore",
@@ -881,7 +881,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib physics tuition",
@@ -893,7 +893,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib physics tuition",
@@ -905,7 +905,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib physics tuition singapore",
@@ -917,7 +917,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib physics tuition singapore",
@@ -929,7 +929,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib tuition singapore",
@@ -941,7 +941,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       },
       {
         "keyword": "ib tuition singapore",
@@ -953,7 +953,7 @@
         "desktop_my_position": null,
         "mobile_my_position": null,
         "first_seen": "2026-03-11T15:48:22Z",
-        "last_seen": "2026-03-11T15:58:22Z"
+        "last_seen": "2026-03-11T15:48:22Z"
       }
     ],
     "overall_consolidation_pct": 0,
@@ -967,11 +967,11 @@
   "run_log": [
     {
       "id": 2,
-      "run_time": "2026-03-11T15:58:22Z",
-      "keywords_checked": 24,
-      "api_calls_used": 24,
-      "errors": "[]",
-      "status": "ok"
+      "run_time": "2026-03-11T16:03:56Z",
+      "keywords_checked": 0,
+      "api_calls_used": 0,
+      "errors": "[\"ib math tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib math tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib math tuition singapore (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib math tuition singapore (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"best ib math tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"best ib math tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib physics tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib physics tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"best ib physics tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"best ib physics tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib physics tuition singapore (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib physics tuition singapore (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib tuition singapore (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib tuition singapore (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib chemistry tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib chemistry tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib english tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib english tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib economics tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib economics tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib biology tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib biology tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib chinese tuition (desktop): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\", \"ib chinese tuition (mobile): SerpApi error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key\"]",
+      "status": "partial_error"
     },
     {
       "id": 1,
