@@ -27,7 +27,7 @@
   "top_n_for_discovery": 5,
   "discovery_enabled": true,
   "github_pages_url": "",
-  "serpapi_monthly_limit": 100,
+  "serpapi_monthly_limit": 10000,
   "redirect_domains": [
     {
       "old_domain": "ibmath.sg",

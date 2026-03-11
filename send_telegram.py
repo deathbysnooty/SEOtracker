@@ -242,12 +242,19 @@ def build_message(db, config):
     for r in my_rankings:
         kw_data.setdefault(r["keyword"], {})[r["device"]] = r
 
+    # Always show ALL keywords from config, even if not ranking
+    all_keywords = config.get("keywords", [])
+    # Also include any keywords found in rankings not in config
+    for kw in kw_data:
+        if kw not in all_keywords:
+            all_keywords.append(kw)
+
     ranking_lines = [
         f"\U0001f3c6 {my_domain} Rankings",
         "\u2501" * 25,
     ]
-    for kw in sorted(kw_data.keys()):
-        devices = kw_data[kw]
+    for kw in all_keywords:
+        devices = kw_data.get(kw, {})
         cols = []
         for dev in ("desktop", "mobile"):
             info = devices.get(dev)
@@ -298,23 +305,30 @@ def build_message(db, config):
 
     beating_all = []
     losing_lines = []
-    for kw in sorted(kw_data.keys()):
+    for kw in all_keywords:
         for dev in ("desktop", "mobile"):
-            my_info = kw_data[kw].get(dev)
-            if not my_info or not my_info["position"]:
-                continue
+            my_info = kw_data.get(kw, {}).get(dev)
+            my_pos = my_info["position"] if my_info and my_info["position"] else None
             best_comp = comp_best.get((kw, dev))
             if not best_comp:
-                beating_all.append(kw)
+                if my_pos:
+                    beating_all.append(kw)
                 continue
-            if my_info["position"] <= best_comp["position"]:
+            if my_pos and my_pos <= best_comp["position"]:
                 beating_all.append(kw)
-            else:
+            elif my_pos:
                 has_changes = True
                 losing_lines.append(
                     f'\u26a0\ufe0f Losing to competitor: {kw}\n'
                     f'  \u2192 {best_comp["domain"]} at #{best_comp["position"]} '
-                    f'(you are #{my_info["position"]})'
+                    f'(you are #{my_pos})'
+                )
+            else:
+                # We're not ranking but competitor is
+                has_changes = True
+                losing_lines.append(
+                    f'\u26a0\ufe0f Not ranking: {kw} {device_icon(dev)}\n'
+                    f'  \u2192 {best_comp["domain"]} at #{best_comp["position"]}'
                 )
 
     comp_parts = []
