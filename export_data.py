@@ -91,7 +91,7 @@ def build_meta(conn, config):
     today_sgt = datetime.now(SGT).strftime("%Y-%m-%d")
     cur.execute(
         "SELECT COUNT(DISTINCT run_time) AS cnt FROM run_log "
-        "WHERE date(run_time) = ?",
+        "WHERE date(run_time, '+8 hours') = ?",
         (today_sgt,),
     )
     row = cur.fetchone()

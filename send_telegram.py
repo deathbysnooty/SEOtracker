@@ -91,10 +91,11 @@ def get_previous_run_time(db, current_run_time):
 
 
 def get_run_count_today(db):
+    # Convert run_time (UTC) to SGT (+8h) before comparing to today's SGT date
     today_str = datetime.now(SGT).strftime("%Y-%m-%d")
     row = db.execute(
         "SELECT COUNT(DISTINCT run_time) AS cnt FROM run_log "
-        "WHERE date(run_time) = ?",
+        "WHERE date(run_time, '+8 hours') = ?",
         (today_str,),
     ).fetchone()
     return row["cnt"] if row else 0
@@ -180,13 +181,14 @@ def mark_competitors_alerted(db, ids):
 # Message builder
 # ---------------------------------------------------------------------------
 
-def build_message(db, config):
+def build_messages(db, config):
+    """Return a list of messages (splitting new competitors into msg 2 if needed)."""
     parts = []
     now = datetime.now(SGT)
 
     latest_rt = get_latest_run_time(db)
     if not latest_rt:
-        return "No run data found in rankings.db."
+        return ["No run data found in rankings.db."]
 
     prev_rt = get_previous_run_time(db, latest_rt)
     my_rankings = get_my_rankings(db, latest_rt)
@@ -319,7 +321,7 @@ def build_message(db, config):
             elif my_pos:
                 has_changes = True
                 losing_lines.append(
-                    f'\u26a0\ufe0f Losing to competitor: {kw}\n'
+                    f'\u26a0\ufe0f Losing to competitor: {kw} {device_icon(dev)}\n'
                     f'  \u2192 {best_comp["domain"]} at #{best_comp["position"]} '
                     f'(you are #{my_pos})'
                 )
@@ -343,8 +345,9 @@ def build_message(db, config):
         parts.append("\n".join(comp_parts))
 
     # ------------------------------------------------------------------
-    # 4. New competitors
+    # 4. New competitors — built separately for potential message 2
     # ------------------------------------------------------------------
+    nc_section = None
     if new_competitors:
         has_changes = True
         nc_lines = ["\U0001f195 NEW COMPETITOR DETECTED"]
@@ -358,7 +361,7 @@ def build_message(db, config):
             if nc.get("first_seen_url"):
                 nc_lines.append(f'URL: {nc["first_seen_url"]}')
         nc_lines.append("\u2192 Add to config.json to track going forward")
-        parts.append("\n".join(nc_lines))
+        nc_section = "\n".join(nc_lines)
 
     # ------------------------------------------------------------------
     # 5. Redirect status
@@ -471,27 +474,29 @@ def build_message(db, config):
     parts.append("\n".join(footer_lines))
 
     # ------------------------------------------------------------------
-    # Assemble & truncate
+    # Assemble into messages, splitting if needed
     # ------------------------------------------------------------------
+    # Try including new competitors in the main message first
+    if nc_section:
+        parts_with_nc = parts + [nc_section]
+        combined = "\n\n".join(parts_with_nc)
+        if len(combined) <= TELEGRAM_MAX_LEN:
+            return [combined]
+        # Doesn't fit — split: main report as msg 1, competitors as msg 2
+        messages = ["\n\n".join(parts)]
+        if len(messages[0]) > TELEGRAM_MAX_LEN:
+            messages[0] = messages[0][: TELEGRAM_MAX_LEN - 20] + "\n... (truncated)"
+        msg2 = nc_section
+        if len(msg2) > TELEGRAM_MAX_LEN:
+            msg2 = msg2[: TELEGRAM_MAX_LEN - 20] + "\n... (truncated)"
+        messages.append(msg2)
+        return messages
+
     message = "\n\n".join(parts)
-
-    if len(message) > TELEGRAM_MAX_LEN:
-        while len(message) > TELEGRAM_MAX_LEN - 50 and len(ranking_lines) > 3:
-            ranking_lines.pop(-1)
-        ranking_lines.append("... (truncated)")
-        parts_new = []
-        for p in parts:
-            if p.startswith("\U0001f3c6"):
-                parts_new.append("\n".join(ranking_lines))
-            else:
-                parts_new.append(p)
-        parts = parts_new
-        message = "\n\n".join(parts)
-
     if len(message) > TELEGRAM_MAX_LEN:
         message = message[: TELEGRAM_MAX_LEN - 20] + "\n... (truncated)"
 
-    return message
+    return [message]
 
 
 # ---------------------------------------------------------------------------
@@ -536,22 +541,22 @@ def main():
     db = get_db()
 
     try:
-        message = build_message(db, config)
-        print("--- Telegram message ---")
-        print(message)
-        print("--- End ---")
-        result = send_telegram(message, token, chat_id)
+        messages = build_messages(db, config)
+        for i, message in enumerate(messages, 1):
+            print(f"--- Telegram message {i}/{len(messages)} ---")
+            print(message)
+            print("--- End ---")
+            result = send_telegram(message, token, chat_id)
+            if not result.get("ok"):
+                print(f"Telegram API returned: {result}")
+                sys.exit(1)
 
         # Mark new competitors as alerted after successful send
         new_comps = get_new_competitors(db)
         if new_comps:
             mark_competitors_alerted(db, [c["id"] for c in new_comps])
 
-        if result.get("ok"):
-            print("Telegram message sent successfully.")
-        else:
-            print(f"Telegram API returned: {result}")
-            sys.exit(1)
+        print(f"Telegram: {len(messages)} message(s) sent successfully.")
     finally:
         db.close()
 

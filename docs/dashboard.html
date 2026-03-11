@@ -3,132 +3,439 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ibtuition.sg — SEO Rankings Dashboard</title>
+<title>ibtuition.sg — SEO Dashboard</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --bg: #FAF8F5; --text: #1a1a1a; --green: #2D6A4F; --red: #C1121F;
-  --yellow: #E9C46A; --card: #fff; --shadow: 0 1px 4px rgba(0,0,0,.08);
-  --radius: 8px; --blue: #2563EB; --orange: #EA580C;
+  --bg: #f8f9fc;
+  --surface: #ffffff;
+  --text: #1a1d29;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border: #e5e7eb;
+  --border-light: #f3f4f6;
+  --green: #059669;
+  --green-bg: #ecfdf5;
+  --green-border: #a7f3d0;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --red-border: #fecaca;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --amber-border: #fde68a;
+  --blue: #2563eb;
+  --blue-bg: #eff6ff;
+  --purple: #7c3aed;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+  --radius: 12px;
+  --radius-sm: 8px;
 }
-body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; font-size: 15px; line-height: 1.5; }
-h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; }
-a { color: var(--green); }
 
-/* Header */
-.header { background: #fff; border-bottom: 1px solid #e5e0d8; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-.header h1 { font-size: 1.3rem; margin-right: auto; }
-.header-meta { font-size: .82rem; color: #666; display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
-.api-bar-wrap { display: flex; align-items: center; gap: 6px; }
-.api-bar { width: 110px; height: 10px; background: #e5e0d8; border-radius: 5px; overflow: hidden; }
-.api-bar-fill { height: 100%; border-radius: 5px; transition: width .4s; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Alerts */
-.alerts { padding: 0 24px; }
-.alert { padding: 10px 16px; border-radius: var(--radius); margin-top: 10px; display: flex; align-items: center; gap: 8px; font-size: .9rem; }
-.alert-red { background: #fde8e8; border: 1px solid #f5c6cb; color: #721c24; }
-.alert-yellow { background: #fff8e1; border: 1px solid #ffe082; color: #6d5e00; }
-.alert .dismiss { margin-left: auto; cursor: pointer; background: none; border: none; font-size: 1.1rem; opacity: .6; }
+/* ── Top Bar ────────────────────────────────── */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+.topbar-brand .logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #059669, #2563eb);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+}
+.topbar-brand h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.topbar-meta {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: .82rem;
+  color: var(--text-secondary);
+}
+.topbar-meta .sep { color: var(--border); }
+.api-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--border-light);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.api-bar {
+  width: 60px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.api-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width .5s ease;
+}
+
+/* ── Alerts ─────────────────────────────────── */
+.alerts { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  margin-top: 12px;
+  font-size: .88rem;
+  font-weight: 500;
+}
+.alert-danger { background: var(--red-bg); border: 1px solid var(--red-border); color: #991b1b; }
+.alert-warn { background: var(--amber-bg); border: 1px solid var(--amber-border); color: #92400e; }
+.alert .dismiss {
+  margin-left: auto;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  opacity: .5;
+  transition: opacity .15s;
+}
 .alert .dismiss:hover { opacity: 1; }
 
-/* Nav */
-.nav { display: flex; gap: 0; padding: 12px 24px 0; border-bottom: 1px solid #e5e0d8; overflow-x: auto; }
-.nav button { background: none; border: none; padding: 8px 18px; font-size: .9rem; cursor: pointer; color: #666; border-bottom: 2px solid transparent; white-space: nowrap; }
-.nav button.active { color: var(--green); border-bottom-color: var(--green); font-weight: 600; }
+/* ── Navigation ─────────────────────────────── */
+.nav-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 24px 0;
+}
+.nav {
+  display: flex;
+  gap: 4px;
+  background: var(--border-light);
+  padding: 4px;
+  border-radius: 10px;
+  overflow-x: auto;
+  width: fit-content;
+}
+.nav button {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  font-size: .85rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-secondary);
+  border-radius: 7px;
+  white-space: nowrap;
+  transition: all .15s;
+}
+.nav button:hover { color: var(--text); }
+.nav button.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
 
-/* Content */
-.content { padding: 20px 24px 40px; max-width: 1400px; margin: 0 auto; }
+/* ── Content ────────────────────────────────── */
+.content { max-width: 1280px; margin: 0 auto; padding: 20px 24px 60px; }
 .section { display: none; }
 .section.active { display: block; }
 
-/* Cards */
-.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; margin-bottom: 16px; }
-.card h2 { font-size: 1.1rem; margin-bottom: 12px; }
-.card h3 { font-size: .95rem; margin-bottom: 8px; }
+/* ── Summary Cards ──────────────────────────── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.summary-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+}
+.summary-card .label {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.summary-card .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.summary-card .sub {
+  font-size: .78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
 
-/* Toggle buttons */
-.toggle-group { display: inline-flex; border: 1px solid #d0ccc4; border-radius: 6px; overflow: hidden; margin-bottom: 12px; }
-.toggle-group button { background: #fff; border: none; border-right: 1px solid #d0ccc4; padding: 6px 14px; font-size: .82rem; cursor: pointer; }
-.toggle-group button:last-child { border-right: none; }
-.toggle-group button.active { background: var(--green); color: #fff; }
+/* ── Cards ──────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.card-header h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
 
-/* Tables */
-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
-th { text-align: left; padding: 8px 10px; background: #f5f2ed; font-weight: 600; border-bottom: 2px solid #e5e0d8; white-space: nowrap; }
-td { padding: 7px 10px; border-bottom: 1px solid #eee; vertical-align: middle; }
-tr:hover td { background: #faf7f2; }
+/* ── Toggle Group ───────────────────────────── */
+.toggle-group {
+  display: inline-flex;
+  background: var(--border-light);
+  padding: 3px;
+  border-radius: 8px;
+  gap: 2px;
+}
+.toggle-group button {
+  background: none;
+  border: none;
+  padding: 5px 12px;
+  font-size: .8rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  transition: all .15s;
+}
+.toggle-group button.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
 
-/* Rank cells */
-.rank-top3 { background: var(--green); color: #fff; font-weight: 700; border-radius: 4px; text-align: center; display: inline-block; min-width: 28px; padding: 1px 6px; }
-.rank-top10 { background: #fef3c7; border-radius: 4px; text-align: center; display: inline-block; min-width: 28px; padding: 1px 6px; }
-.rank-top20 { background: #ffedd5; border-radius: 4px; text-align: center; display: inline-block; min-width: 28px; padding: 1px 6px; }
-.rank-low { background: #e5e5e5; border-radius: 4px; text-align: center; display: inline-block; min-width: 28px; padding: 1px 6px; color: #666; }
-.rank-none { color: #999; }
+/* ── Tables ─────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: .88rem;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fafbfd; }
+.kw-cell { font-weight: 600; color: var(--text); }
 
-.change-up { color: var(--green); font-weight: 600; font-size: .8rem; }
-.change-down { color: var(--red); font-weight: 600; font-size: .8rem; }
-.change-same { color: #999; font-size: .8rem; }
-.url-changed-icon { cursor: help; }
-.comp-ahead { color: var(--green); }
-.comp-behind { color: var(--red); }
+/* ── Rank Badges ────────────────────────────── */
+.rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: .82rem;
+}
+.rank-1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; }
+.rank-2 { background: linear-gradient(135deg, #d1d5db, #9ca3af); color: #374151; }
+.rank-3 { background: linear-gradient(135deg, #d97706, #b45309); color: #fff; }
+.rank-top10 { background: var(--green-bg); color: var(--green); }
+.rank-top20 { background: var(--amber-bg); color: var(--amber); }
+.rank-low { background: var(--border-light); color: var(--text-secondary); }
+.rank-none { color: var(--text-muted); font-weight: 400; }
 
-/* Competitor cards */
-.comp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-bottom: 20px; }
-.comp-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px; border-left: 4px solid var(--yellow); }
-.comp-card h3 { font-size: 1rem; margin-bottom: 4px; }
-.comp-card p { font-size: .82rem; color: #555; margin-bottom: 2px; }
-.comp-card .note { font-size: .78rem; color: var(--green); margin-top: 8px; font-style: italic; }
+.change { font-size: .78rem; font-weight: 600; margin-left: 4px; }
+.change-up { color: var(--green); }
+.change-down { color: var(--red); }
+.change-new { color: var(--blue); }
+.change-lost { color: var(--red); }
+.change-same { color: var(--text-muted); font-weight: 400; }
 
-/* Progress bar */
-.progress-wrap { margin: 12px 0; }
-.progress-label { font-size: .9rem; margin-bottom: 4px; }
-.progress-bar { height: 18px; background: #e5e0d8; border-radius: 9px; overflow: hidden; }
-.progress-fill { height: 100%; border-radius: 9px; background: var(--green); transition: width .5s; }
+/* ── Competitor indicators ──────────────────── */
+.comp-ahead { color: var(--green); font-weight: 600; font-size: .82rem; }
+.comp-behind { color: var(--red); font-weight: 600; font-size: .82rem; }
+.comp-none { color: var(--text-muted); font-size: .82rem; }
 
-/* Health cards */
-.health-cards { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-.health-card { padding: 12px 16px; border-radius: var(--radius); box-shadow: var(--shadow); background: var(--card); min-width: 250px; }
-.health-card.healthy { border-left: 4px solid var(--green); }
-.health-card.unhealthy { border-left: 4px solid var(--red); background: #fef2f2; }
+/* ── Competitor Cards ───────────────────────── */
+.disc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.disc-card {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  padding: 16px;
+}
+.disc-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: 6px; }
+.disc-card p { font-size: .82rem; color: var(--text-secondary); margin-bottom: 3px; }
+.disc-card .action { font-size: .78rem; color: var(--green); font-style: italic; margin-top: 8px; }
+.disc-card a { color: var(--blue); text-decoration: none; }
+.disc-card a:hover { text-decoration: underline; }
 
-/* SVG chart */
-.chart-container { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; margin-bottom: 16px; }
-.chart-container svg { width: 100%; }
+/* ── Health Cards ───────────────────────────── */
+.health-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.health-card {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  min-width: 260px;
+  flex: 1;
+}
+.health-card.ok { border-left: 4px solid var(--green); }
+.health-card.fail { border-left: 4px solid var(--red); background: var(--red-bg); }
+.health-card .domain { font-weight: 700; font-size: .95rem; margin-bottom: 4px; }
+.health-card .detail { font-size: .78rem; color: var(--text-secondary); }
 
-/* Status icons */
-.status-icon { font-size: .9rem; }
+/* ── Progress Bar ───────────────────────────── */
+.progress-wrap { margin: 16px 0; }
+.progress-label { font-size: .88rem; font-weight: 600; margin-bottom: 6px; }
+.progress-sublabel { font-size: .78rem; color: var(--text-secondary); margin-bottom: 8px; }
+.progress-bar {
+  height: 12px;
+  background: var(--border-light);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--green), #34d399);
+  transition: width .6s ease;
+}
 
-/* Empty state */
-.empty-state { text-align: center; padding: 60px 20px; color: #888; }
-.empty-state h2 { font-size: 1.2rem; margin-bottom: 8px; color: #666; }
+/* ── Chart ──────────────────────────────────── */
+.chart-wrap {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.chart-wrap h3 { font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+.chart-legend {
+  font-size: .78rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+}
+.chart-legend span { display: inline-flex; align-items: center; gap: 4px; }
 
-/* Responsive */
+/* ── Status ─────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+.status-ok { background: var(--green-bg); color: var(--green); }
+.status-warn { background: var(--amber-bg); color: var(--amber); }
+.status-bad { background: var(--red-bg); color: var(--red); }
+.status-muted { background: var(--border-light); color: var(--text-muted); }
+
+/* ── URL path ───────────────────────────────── */
+.url-path { font-size: .78rem; color: var(--text-secondary); font-family: 'SF Mono', Monaco, monospace; }
+
+/* ── Empty State ────────────────────────────── */
+.empty { text-align: center; padding: 48px 20px; color: var(--text-muted); }
+.empty h2 { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 6px; }
+
+/* ── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
-  .header { padding: 12px 14px; }
-  .header h1 { font-size: 1.1rem; width: 100%; }
-  .nav { padding: 8px 14px 0; }
-  .nav button { padding: 6px 12px; font-size: .8rem; }
-  .content { padding: 14px; }
-  table { font-size: .78rem; }
-  th, td { padding: 5px 6px; }
-  .card { padding: 14px; }
-  .comp-cards { grid-template-columns: 1fr; }
+  .topbar { padding: 12px 16px; }
+  .topbar-brand h1 { font-size: .95rem; }
+  .topbar-meta { display: none; }
+  .nav-wrap { padding: 12px 16px 0; }
+  .content { padding: 14px 16px 40px; }
+  .card { padding: 16px; }
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  table { font-size: .8rem; }
+  th, td { padding: 8px; }
 }
 @media (max-width: 480px) {
-  .header-meta { flex-direction: column; gap: 4px; }
-  .api-bar { width: 80px; }
+  .summary-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .summary-card { padding: 12px; }
+  .summary-card .value { font-size: 1.2rem; }
+  .disc-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>ibtuition.sg — SEO Rankings</h1>
-  <div class="header-meta">
-    <span id="lastUpdated">Last updated: —</span>
-    <span id="nextRun">Next run: —</span>
-    <div class="api-bar-wrap">
-      <span id="apiLabel">API: —</span>
+<div class="topbar">
+  <div class="topbar-brand">
+    <div class="logo">IB</div>
+    <h1>ibtuition.sg SEO</h1>
+  </div>
+  <div class="topbar-meta">
+    <span id="lastUpdated">Updated: --</span>
+    <span class="sep">|</span>
+    <span id="nextRun">Next: --</span>
+    <span class="sep">|</span>
+    <div class="api-pill">
+      <span id="apiLabel">API: --</span>
       <div class="api-bar"><div class="api-bar-fill" id="apiFill"></div></div>
     </div>
   </div>
@@ -136,98 +443,106 @@ tr:hover td { background: #faf7f2; }
 
 <div class="alerts" id="alertsContainer"></div>
 
-<div class="nav" id="mainNav">
-  <button class="active" data-tab="rankings">Rankings</button>
-  <button data-tab="competitors">Competitors</button>
-  <button data-tab="trends">Trends</button>
-  <button data-tab="newcompetitors">New Competitors</button>
-  <button data-tab="redirects">Redirects</button>
-  <button data-tab="runlog">Run Log</button>
+<div class="nav-wrap">
+  <div class="nav" id="mainNav">
+    <button class="active" data-tab="rankings">Rankings</button>
+    <button data-tab="competitors">Competitors</button>
+    <button data-tab="trends">Trends</button>
+    <button data-tab="discovery">Discovery</button>
+    <button data-tab="redirects">Redirects</button>
+    <button data-tab="log">Run Log</button>
+  </div>
 </div>
 
 <div class="content" id="mainContent">
   <div class="section active" id="sec-rankings"></div>
   <div class="section" id="sec-competitors"></div>
   <div class="section" id="sec-trends"></div>
-  <div class="section" id="sec-newcompetitors"></div>
+  <div class="section" id="sec-discovery"></div>
   <div class="section" id="sec-redirects"></div>
-  <div class="section" id="sec-runlog"></div>
+  <div class="section" id="sec-log"></div>
 </div>
 
 <script>
 (function() {
   'use strict';
 
-  let DATA = null;
+  let D = null;
 
-  // ── Helpers ──────────────────────────────────────────────────
-  function esc(s) { if (s == null) return ''; const d = document.createElement('div'); d.textContent = String(s); return d.innerHTML; }
+  // ── Helpers ──────────────────────────────────────
+  const esc = s => { if (s == null) return ''; const d = document.createElement('div'); d.textContent = String(s); return d.innerHTML; };
+
   function fmtSGT(iso) {
-    if (!iso) return '—';
+    if (!iso) return '--';
     try {
       const d = new Date(iso);
       if (isNaN(d)) return String(iso);
-      return d.toLocaleString('en-SG', { timeZone: 'Asia/Singapore', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) + ' SGT';
+      return d.toLocaleString('en-SG', { timeZone: 'Asia/Singapore', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
     } catch { return String(iso); }
   }
+
   function shortPath(p, max) {
-    if (!p) return '—';
-    if (p === '/') return 'Home';
+    if (!p) return '--';
+    if (p === '/') return '/';
     max = max || 25;
     return p.length > max ? p.slice(0, max) + '...' : p;
   }
-  function rankClass(pos) {
-    if (pos == null) return 'rank-none';
-    if (pos <= 3) return 'rank-top3';
-    if (pos <= 10) return 'rank-top10';
-    if (pos <= 20) return 'rank-top20';
-    return 'rank-low';
+
+  function rankBadge(pos) {
+    if (pos == null) return '<span class="rank-none">--</span>';
+    let cls = 'rank-low';
+    if (pos === 1) cls = 'rank-1';
+    else if (pos === 2) cls = 'rank-2';
+    else if (pos === 3) cls = 'rank-3';
+    else if (pos <= 10) cls = 'rank-top10';
+    else if (pos <= 20) cls = 'rank-top20';
+    return '<span class="rank ' + cls + '">' + pos + '</span>';
   }
-  function rankHTML(pos) {
-    if (pos == null) return '<span class="rank-none">—</span>';
-    return '<span class="' + rankClass(pos) + '">' + pos + '</span>';
-  }
-  function changeHTML(curr, prev) {
-    if (curr == null && prev == null) return '<span class="change-same">—</span>';
-    if (curr == null) return '<span class="change-down">Lost</span>';
-    if (prev == null) return '<span class="change-up">New</span>';
+
+  function changeSpan(curr, prev) {
+    if (curr == null && prev == null) return '';
+    if (curr == null) return '<span class="change change-lost">Lost</span>';
+    if (prev == null) return '<span class="change change-new">New</span>';
     const diff = prev - curr;
-    if (diff > 0) return '<span class="change-up">&uarr;' + diff + '</span>';
-    if (diff < 0) return '<span class="change-down">&darr;' + Math.abs(diff) + '</span>';
-    return '<span class="change-same">=</span>';
+    if (diff > 0) return '<span class="change change-up">+' + diff + '</span>';
+    if (diff < 0) return '<span class="change change-down">' + diff + '</span>';
+    return '<span class="change change-same">=</span>';
   }
-  function bestCompetitor(keyword, device, list) {
-    if (!list || !list.length) return null;
+
+  function findRow(kw, dev, list) {
+    if (!list) return null;
+    return list.find(r => r.keyword === kw && r.device === dev) || null;
+  }
+
+  function bestComp(kw, dev, list) {
+    if (!list) return null;
     let best = null;
     for (const r of list) {
-      if (r.keyword !== keyword || r.device !== device) continue;
-      if (r.is_my_domain) continue;
-      if (r.position == null) continue;
+      if (r.keyword !== kw || r.device !== dev || r.is_my_domain || r.position == null) continue;
       if (!best || r.position < best.position) best = r;
     }
     return best;
   }
-  function findRanking(keyword, device, list) {
-    if (!list) return null;
-    return list.find(r => r.keyword === keyword && r.device === device) || null;
-  }
-  function uniqueKeywords(list) {
+
+  function keywords(list) {
     const s = new Set();
     if (list) list.forEach(r => s.add(r.keyword));
     return Array.from(s);
   }
-  function uniqueDomains(list) {
+
+  function domains(list) {
     const s = new Set();
     if (list) list.forEach(r => { if (!r.is_my_domain && r.domain) s.add(r.domain); });
     return Array.from(s).sort();
   }
-  function myDomain(list) {
+
+  function myDom(list) {
     if (!list) return null;
     const r = list.find(x => x.is_my_domain);
     return r ? r.domain : null;
   }
 
-  // ── Tab Navigation ──────────────────────────────────────────
+  // ── Tab Nav ──────────────────────────────────────
   document.getElementById('mainNav').addEventListener('click', function(e) {
     if (e.target.tagName !== 'BUTTON') return;
     this.querySelectorAll('button').forEach(b => b.classList.remove('active'));
@@ -236,466 +551,446 @@ tr:hover td { background: #faf7f2; }
     document.getElementById('sec-' + e.target.dataset.tab).classList.add('active');
   });
 
-  // ── Fetch & Render ──────────────────────────────────────────
+  // ── Fetch & Render ───────────────────────────────
   fetch('./data.json')
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(data => { DATA = data; render(); })
+    .then(data => { D = data; render(); })
     .catch(() => {
       document.getElementById('mainContent').innerHTML =
-        '<div class="empty-state"><h2>No data yet</h2><p>Run the tracker to start collecting rankings.</p></div>';
+        '<div class="empty"><h2>No data yet</h2><p>Run the tracker to start collecting rankings.</p></div>';
     });
 
   function render() {
-    if (!DATA) return;
-    renderHeader();
+    if (!D) return;
+    renderTopbar();
     renderAlerts();
     renderRankings();
     renderCompetitors();
     renderTrends();
-    renderNewCompetitors();
+    renderDiscovery();
     renderRedirects();
-    renderRunLog();
+    renderLog();
   }
 
-  // ── Header ──────────────────────────────────────────────────
-  function renderHeader() {
-    const m = DATA.meta || {};
-    document.getElementById('lastUpdated').textContent = 'Last updated: ' + fmtSGT(m.last_run);
-    document.getElementById('nextRun').textContent = 'Next run: ' + fmtSGT(m.next_run);
+  // ── Topbar ───────────────────────────────────────
+  function renderTopbar() {
+    const m = D.meta || {};
+    document.getElementById('lastUpdated').textContent = 'Updated: ' + fmtSGT(m.last_run);
+    document.getElementById('nextRun').textContent = 'Next: ' + fmtSGT(m.next_run);
     const used = m.api_used_this_month || 0;
     const limit = m.api_limit || 100;
     const pct = m.api_percent != null ? m.api_percent : Math.round(used / limit * 100);
-    document.getElementById('apiLabel').textContent = 'API: ' + used + '/' + limit;
+    document.getElementById('apiLabel').textContent = used + '/' + limit;
     const fill = document.getElementById('apiFill');
     fill.style.width = Math.min(pct, 100) + '%';
-    fill.style.background = pct < 60 ? 'var(--green)' : pct < 80 ? 'var(--yellow)' : 'var(--red)';
+    fill.style.background = pct < 50 ? 'var(--green)' : pct < 80 ? 'var(--amber)' : 'var(--red)';
   }
 
-  // ── Alerts ──────────────────────────────────────────────────
+  // ── Alerts ───────────────────────────────────────
   function renderAlerts() {
     const c = document.getElementById('alertsContainer');
-    let html = '';
-    const redir = DATA.redirect || {};
-    const health = redir.health || [];
-    const unhealthy = health.filter(h => !h.is_healthy);
-    if (unhealthy.length) {
-      const doms = unhealthy.map(h => h.old_domain).join(', ');
-      html += alertBanner('red', 'Redirect health check FAILED — ' + esc(doms) + ' not returning 301');
+    let h = '';
+    const health = (D.redirect || {}).health || [];
+    const bad = health.filter(x => !x.is_healthy);
+    if (bad.length) {
+      h += '<div class="alert alert-danger">&#x1F6A8; Redirect health FAILED: ' +
+        bad.map(x => esc(x.old_domain)).join(', ') +
+        '<button class="dismiss">&times;</button></div>';
     }
-    const disc = DATA.discovered_competitors || {};
-    if ((disc.unalerted || []).length) {
-      html += alertBanner('yellow', 'New competitor detected in top 5');
+    const nc = ((D.discovered_competitors || {}).unalerted || []);
+    if (nc.length) {
+      h += '<div class="alert alert-warn">&#x1F195; ' + nc.length + ' new competitor' + (nc.length > 1 ? 's' : '') +
+        ' detected in top 5<button class="dismiss">&times;</button></div>';
     }
-    const uc = DATA.url_changes || [];
+    const uc = D.url_changes || [];
     if (uc.length) {
-      html += alertBanner('yellow', 'Ranking page changed for ' + uc.length + ' keyword' + (uc.length > 1 ? 's' : ''));
+      h += '<div class="alert alert-warn">&#x26A0;&#xFE0F; Ranking page changed for ' + uc.length +
+        ' keyword' + (uc.length > 1 ? 's' : '') + '<button class="dismiss">&times;</button></div>';
     }
-    c.innerHTML = html;
-    c.querySelectorAll('.dismiss').forEach(btn => btn.addEventListener('click', function() { this.closest('.alert').style.display = 'none'; }));
-  }
-  function alertBanner(type, msg) {
-    return '<div class="alert alert-' + type + '">' +
-      '<span>' + (type === 'red' ? '&#x1F534;' : '&#x1F7E1;') + ' ' + msg + '</span>' +
-      '<button class="dismiss" title="Dismiss">&times;</button></div>';
+    c.innerHTML = h;
+    c.querySelectorAll('.dismiss').forEach(b => b.onclick = function() { this.closest('.alert').remove(); });
   }
 
-  // ── Rankings ────────────────────────────────────────────────
+  // ── Rankings ─────────────────────────────────────
   function renderRankings() {
     const sec = document.getElementById('sec-rankings');
-    sec.innerHTML = '<div class="card"><h2>My Rankings</h2>' +
-      '<div class="toggle-group" id="deviceToggle">' +
-      '<button data-dev="desktop">&#x1F5A5; Desktop</button>' +
-      '<button data-dev="mobile">&#x1F4F1; Mobile</button>' +
+    const latest = (D.rankings || {}).latest || [];
+    const previous = (D.rankings || {}).previous || [];
+    const kws = keywords(latest.length ? latest : previous);
+    const md = myDom(latest);
+
+    // Summary cards
+    const myRows = latest.filter(r => r.is_my_domain && r.position != null);
+    const top3 = myRows.filter(r => r.position <= 3).length;
+    const top10 = myRows.filter(r => r.position <= 10).length;
+    const avgPos = myRows.length ? Math.round(myRows.reduce((a, r) => a + r.position, 0) / myRows.length) : '--';
+    const totalKw = kws.length;
+
+    let html = '<div class="summary-grid">' +
+      summaryCard('Avg Position', avgPos, myRows.length ? 'Across ' + myRows.length + ' ranked slots' : 'No rankings yet') +
+      summaryCard('Top 3', top3, 'Out of ' + (totalKw * 2) + ' keyword+device slots') +
+      summaryCard('Top 10', top10, 'Out of ' + (totalKw * 2) + ' keyword+device slots') +
+      summaryCard('Keywords', totalKw, 'Desktop & mobile tracked') +
+      '</div>';
+
+    html += '<div class="card"><div class="card-header"><h2>Keyword Rankings</h2>' +
+      '<div class="toggle-group" id="devToggle">' +
       '<button class="active" data-dev="both">Both</button>' +
-      '</div><div id="rankingsTable"></div></div>';
-    document.getElementById('deviceToggle').addEventListener('click', function(e) {
+      '<button data-dev="desktop">Desktop</button>' +
+      '<button data-dev="mobile">Mobile</button>' +
+      '</div></div><div id="rankTbl"></div></div>';
+
+    sec.innerHTML = html;
+    document.getElementById('devToggle').addEventListener('click', function(e) {
       if (e.target.tagName !== 'BUTTON') return;
       this.querySelectorAll('button').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      buildRankingsTable(e.target.dataset.dev);
+      buildRankTbl(e.target.dataset.dev);
     });
-    buildRankingsTable('both');
+    buildRankTbl('both');
   }
 
-  function buildRankingsTable(mode) {
-    const latest = (DATA.rankings || {}).latest || [];
-    const previous = (DATA.rankings || {}).previous || [];
-    const urlChanges = DATA.url_changes || [];
-    const keywords = uniqueKeywords(latest.length ? latest : previous);
-    if (!keywords.length) {
-      document.getElementById('rankingsTable').innerHTML = '<p style="color:#888">No ranking data available.</p>';
+  function summaryCard(label, value, sub) {
+    return '<div class="summary-card"><div class="label">' + label + '</div>' +
+      '<div class="value">' + value + '</div>' +
+      '<div class="sub">' + esc(sub) + '</div></div>';
+  }
+
+  function buildRankTbl(mode) {
+    const latest = (D.rankings || {}).latest || [];
+    const previous = (D.rankings || {}).previous || [];
+    const kws = keywords(latest.length ? latest : previous);
+    if (!kws.length) {
+      document.getElementById('rankTbl').innerHTML = '<p style="color:var(--text-muted);padding:20px 0;">No ranking data available.</p>';
       return;
     }
 
-    let html = '<table><thead><tr>';
+    let h = '<table><thead><tr><th>Keyword</th>';
     if (mode === 'both') {
-      html += '<th>Keyword</th><th>&#x1F5A5; Rank</th><th>&#x1F5A5; Page</th><th>&#x1F4F1; Rank</th><th>&#x1F4F1; Page</th><th>Best Competitor</th>';
+      h += '<th>Desktop</th><th>Mobile</th><th>Best Competitor</th>';
     } else {
-      html += '<th>Keyword</th><th>Rank</th><th>Change</th><th>Ranking Page</th><th>URL Changed?</th><th>Best Competitor</th>';
+      h += '<th>Rank</th><th>Change</th><th>Page</th><th>Best Competitor</th>';
     }
-    html += '</tr></thead><tbody>';
+    h += '</tr></thead><tbody>';
 
-    for (const kw of keywords) {
+    for (const kw of kws) {
+      h += '<tr><td class="kw-cell">' + esc(kw) + '</td>';
       if (mode === 'both') {
-        const rd = findRanking(kw, 'desktop', latest);
-        const rm = findRanking(kw, 'mobile', latest);
-        const compD = bestCompetitor(kw, 'desktop', latest);
-        const compM = bestCompetitor(kw, 'mobile', latest);
-        const bestComp = compD && compM ? (compD.position <= compM.position ? compD : compM) : (compD || compM);
+        const rd = findRow(kw, 'desktop', latest);
+        const rm = findRow(kw, 'mobile', latest);
+        const rpd = findRow(kw, 'desktop', previous);
+        const rpm = findRow(kw, 'mobile', previous);
+        h += '<td>' + rankBadge(rd ? rd.position : null) + changeSpan(rd ? rd.position : null, rpd ? rpd.position : null) +
+          '<span class="url-path" style="display:block;margin-top:2px;">' + shortPath(rd ? rd.url_path : null) + '</span></td>';
+        h += '<td>' + rankBadge(rm ? rm.position : null) + changeSpan(rm ? rm.position : null, rpm ? rpm.position : null) +
+          '<span class="url-path" style="display:block;margin-top:2px;">' + shortPath(rm ? rm.url_path : null) + '</span></td>';
+        const cd = bestComp(kw, 'desktop', latest);
+        const cm = bestComp(kw, 'mobile', latest);
+        const bc = cd && cm ? (cd.position <= cm.position ? cd : cm) : (cd || cm);
         const myBest = Math.min(rd && rd.position != null ? rd.position : 999, rm && rm.position != null ? rm.position : 999);
-        html += '<tr><td><strong>' + esc(kw) + '</strong></td>';
-        html += '<td>' + rankHTML(rd ? rd.position : null) + '</td>';
-        html += '<td>' + shortPath(rd ? rd.url_path : null) + '</td>';
-        html += '<td>' + rankHTML(rm ? rm.position : null) + '</td>';
-        html += '<td>' + shortPath(rm ? rm.url_path : null) + '</td>';
-        html += '<td>' + compCell(bestComp, myBest) + '</td></tr>';
+        h += '<td>' + compHTML(bc, myBest) + '</td>';
       } else {
-        const r = findRanking(kw, mode, latest);
-        const rp = findRanking(kw, mode, previous);
-        const comp = bestCompetitor(kw, mode, latest);
-        const myPos = r ? r.position : null;
+        const r = findRow(kw, mode, latest);
+        const rp = findRow(kw, mode, previous);
+        const pos = r ? r.position : null;
         const prevPos = rp ? rp.position : null;
-        const uc = urlChanges.find(u => u.keyword === kw && u.device === mode);
-        html += '<tr><td><strong>' + esc(kw) + '</strong></td>';
-        html += '<td>' + rankHTML(myPos) + '</td>';
-        html += '<td>' + changeHTML(myPos, prevPos) + '</td>';
-        html += '<td>' + shortPath(r ? r.url_path : null) + '</td>';
-        html += '<td>';
-        if (r && r.url_changed) {
-          const tipOld = uc ? uc.previous_url_path : '?';
-          const tipNew = uc ? uc.current_url_path : (r.url_path || '?');
-          html += '<span class="url-changed-icon" title="Changed from ' + esc(tipOld) + ' to ' + esc(tipNew) + '">&#x26A0;&#xFE0F;</span>';
-        } else { html += '—'; }
-        html += '</td>';
-        html += '<td>' + compCell(comp, myPos) + '</td></tr>';
+        const bc = bestComp(kw, mode, latest);
+        h += '<td>' + rankBadge(pos) + '</td>';
+        h += '<td>' + changeSpan(pos, prevPos) + '</td>';
+        h += '<td><span class="url-path">' + shortPath(r ? r.url_path : null) + '</span></td>';
+        h += '<td>' + compHTML(bc, pos) + '</td>';
       }
+      h += '</tr>';
     }
-    html += '</tbody></table>';
-    document.getElementById('rankingsTable').innerHTML = html;
+    h += '</tbody></table>';
+    document.getElementById('rankTbl').innerHTML = h;
   }
 
-  function compCell(comp, myPos) {
-    if (!comp) return '<span style="color:#999">—</span>';
+  function compHTML(comp, myPos) {
+    if (!comp) return '<span class="comp-none">--</span>';
     const ahead = myPos != null && myPos < 999 && myPos <= comp.position;
-    const cls = ahead ? 'comp-ahead' : 'comp-behind';
-    return '<span class="' + cls + '">' + esc(comp.domain) + ' #' + comp.position + '</span>';
+    return '<span class="' + (ahead ? 'comp-ahead' : 'comp-behind') + '">' +
+      esc(comp.domain) + ' #' + comp.position + '</span>';
   }
 
-  // ── Competitors ─────────────────────────────────────────────
+  // ── Competitors ──────────────────────────────────
   function renderCompetitors() {
     const sec = document.getElementById('sec-competitors');
-    const latest = (DATA.rankings || {}).latest || [];
-    const previous = (DATA.rankings || {}).previous || [];
-    const md = myDomain(latest);
-    const domains = [md].concat(uniqueDomains(latest)).filter(Boolean);
-    if (!domains.length) { sec.innerHTML = '<div class="card"><p style="color:#888">No competitor data available.</p></div>'; return; }
+    const latest = (D.rankings || {}).latest || [];
+    const md = myDom(latest);
+    const doms = [md].concat(domains(latest)).filter(Boolean);
+    if (!doms.length) { sec.innerHTML = '<div class="card"><p style="color:var(--text-muted)">No competitor data.</p></div>'; return; }
 
-    let btns = '<div class="toggle-group" id="compDomainToggle">';
-    domains.forEach((d, i) => {
-      const label = d === md ? 'My Site' : esc(d);
-      btns += '<button data-domain="' + esc(d) + '"' + (i === 0 ? ' class="active"' : '') + '>' + label + '</button>';
+    let btns = '<div class="toggle-group" id="compToggle">';
+    doms.forEach((d, i) => {
+      btns += '<button data-domain="' + esc(d) + '"' + (i === 0 ? ' class="active"' : '') + '>' +
+        (d === md ? 'My Site' : esc(d)) + '</button>';
     });
     btns += '</div>';
-    sec.innerHTML = '<div class="card"><h2>Competitor View</h2>' + btns + '<div id="compTable"></div></div>';
 
-    document.getElementById('compDomainToggle').addEventListener('click', function(e) {
+    sec.innerHTML = '<div class="card"><div class="card-header"><h2>Head-to-Head Comparison</h2>' + btns + '</div><div id="compTbl"></div></div>';
+    document.getElementById('compToggle').addEventListener('click', function(e) {
       if (e.target.tagName !== 'BUTTON') return;
       this.querySelectorAll('button').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      buildCompTable(e.target.dataset.domain);
+      buildCompTbl(e.target.dataset.domain);
     });
-    buildCompTable(domains[0]);
+    buildCompTbl(doms[0]);
   }
 
-  function buildCompTable(domain) {
-    const latest = (DATA.rankings || {}).latest || [];
-    const previous = (DATA.rankings || {}).previous || [];
-    const keywords = uniqueKeywords(latest);
-    let html = '<table><thead><tr><th>Keyword</th><th>&#x1F5A5; Rank</th><th>&#x1F5A5; Page</th><th>&#x1F4F1; Rank</th><th>&#x1F4F1; Page</th></tr></thead><tbody>';
-    for (const kw of keywords) {
+  function buildCompTbl(domain) {
+    const latest = (D.rankings || {}).latest || [];
+    const kws = keywords(latest);
+    let h = '<table><thead><tr><th>Keyword</th><th>Desktop</th><th>Page</th><th>Mobile</th><th>Page</th></tr></thead><tbody>';
+    for (const kw of kws) {
       const rd = latest.find(r => r.keyword === kw && r.device === 'desktop' && r.domain === domain);
       const rm = latest.find(r => r.keyword === kw && r.device === 'mobile' && r.domain === domain);
-      html += '<tr><td><strong>' + esc(kw) + '</strong></td>';
-      html += '<td>' + rankHTML(rd ? rd.position : null) + '</td>';
-      html += '<td>' + shortPath(rd ? rd.url_path : null) + '</td>';
-      html += '<td>' + rankHTML(rm ? rm.position : null) + '</td>';
-      html += '<td>' + shortPath(rm ? rm.url_path : null) + '</td></tr>';
+      h += '<tr><td class="kw-cell">' + esc(kw) + '</td>';
+      h += '<td>' + rankBadge(rd ? rd.position : null) + '</td>';
+      h += '<td><span class="url-path">' + shortPath(rd ? rd.url_path : null) + '</span></td>';
+      h += '<td>' + rankBadge(rm ? rm.position : null) + '</td>';
+      h += '<td><span class="url-path">' + shortPath(rm ? rm.url_path : null) + '</span></td></tr>';
     }
-    html += '</tbody></table>';
-    document.getElementById('compTable').innerHTML = html;
+    h += '</tbody></table>';
+    document.getElementById('compTbl').innerHTML = h;
   }
 
-  // ── Trends (Sparklines) ─────────────────────────────────────
+  // ── Trends ───────────────────────────────────────
   function renderTrends() {
     const sec = document.getElementById('sec-trends');
-    const history = (DATA.rankings || {}).history_14_runs || [];
-    const latest = (DATA.rankings || {}).latest || [];
-    const keywords = uniqueKeywords(latest);
-    if (!keywords.length || !history.length) {
-      sec.innerHTML = '<div class="card"><p style="color:#888">Not enough history data for trends.</p></div>';
+    const history = (D.rankings || {}).history_14_runs || [];
+    const latest = (D.rankings || {}).latest || [];
+    const kws = keywords(latest);
+    if (!kws.length || !history.length) {
+      sec.innerHTML = '<div class="card"><div class="empty"><h2>Not enough data</h2><p>Trends will appear after a few runs.</p></div></div>';
       return;
     }
 
-    let html = '<div class="card"><h2>Position Trends (Last 14 Runs)</h2>' +
-      '<p style="font-size:.82rem;color:#888;margin-bottom:12px;">' +
-      '<span style="color:var(--blue);">&#9644; Desktop</span> &nbsp; ' +
-      '<span style="color:var(--orange);">&#9644; Mobile</span> &nbsp; Lower position = better ranking (top of chart = #1)</p>' +
-      '<table><thead><tr><th>Keyword</th><th>Sparkline</th><th>&#x1F5A5; Current</th><th>&#x1F4F1; Current</th></tr></thead><tbody>';
+    let h = '<div class="chart-wrap"><h3>Position Trends (Last 14 Runs)</h3>' +
+      '<div class="chart-legend">' +
+      '<span><svg width="16" height="3"><rect width="16" height="3" rx="1" fill="var(--blue)"/></svg> Desktop</span>' +
+      '<span><svg width="16" height="3"><rect width="16" height="3" rx="1" fill="#f97316"/></svg> Mobile</span>' +
+      '<span style="color:var(--text-muted)">Lower = better (top of chart = #1)</span>' +
+      '</div>' +
+      '<table><thead><tr><th>Keyword</th><th style="width:140px">Sparkline</th><th>Desktop</th><th>Mobile</th></tr></thead><tbody>';
 
-    for (const kw of keywords) {
-      const desktopPts = [];
-      const mobilePts = [];
+    for (const kw of kws) {
+      const dp = [], mp = [];
       for (const run of history) {
-        const rankings = run.rankings || [];
-        const rd = rankings.find(r => r.keyword === kw && r.device === 'desktop');
-        const rm = rankings.find(r => r.keyword === kw && r.device === 'mobile');
-        desktopPts.push(rd && rd.position != null ? rd.position : null);
-        mobilePts.push(rm && rm.position != null ? rm.position : null);
+        const rnk = run.rankings || [];
+        const rd = rnk.find(r => r.keyword === kw && r.device === 'desktop');
+        const rm = rnk.find(r => r.keyword === kw && r.device === 'mobile');
+        dp.push(rd && rd.position != null ? rd.position : null);
+        mp.push(rm && rm.position != null ? rm.position : null);
       }
-      const rd = findRanking(kw, 'desktop', latest);
-      const rm = findRanking(kw, 'mobile', latest);
-      html += '<tr><td><strong>' + esc(kw) + '</strong></td>';
-      html += '<td>' + sparklineSVG(desktopPts, mobilePts) + '</td>';
-      html += '<td>' + rankHTML(rd ? rd.position : null) + '</td>';
-      html += '<td>' + rankHTML(rm ? rm.position : null) + '</td></tr>';
+      const rd = findRow(kw, 'desktop', latest);
+      const rm = findRow(kw, 'mobile', latest);
+      h += '<tr><td class="kw-cell">' + esc(kw) + '</td>';
+      h += '<td>' + sparkSVG(dp, mp) + '</td>';
+      h += '<td>' + rankBadge(rd ? rd.position : null) + '</td>';
+      h += '<td>' + rankBadge(rm ? rm.position : null) + '</td></tr>';
     }
-    html += '</tbody></table></div>';
-    sec.innerHTML = html;
+    h += '</tbody></table></div>';
+    sec.innerHTML = h;
   }
 
-  function sparklineSVG(desktopPts, mobilePts) {
-    const W = 120, H = 30, PAD = 2;
-    const all = desktopPts.concat(mobilePts).filter(v => v != null);
-    if (!all.length) return '<span style="color:#999">—</span>';
-    const minV = 1;
-    const maxV = Math.max(Math.max.apply(null, all), 10);
-    const n = Math.max(desktopPts.length, mobilePts.length);
-
-    function toPath(pts, color) {
+  function sparkSVG(dp, mp) {
+    const W = 130, H = 32, P = 3;
+    const all = dp.concat(mp).filter(v => v != null);
+    if (!all.length) return '<span class="rank-none">--</span>';
+    const mn = 1, mx = Math.max(Math.max(...all), 10);
+    const n = Math.max(dp.length, mp.length);
+    function path(pts, col) {
       const segs = [];
-      let started = false;
+      let on = false;
       for (let i = 0; i < pts.length; i++) {
-        if (pts[i] == null) { started = false; continue; }
-        const x = PAD + (i / Math.max(n - 1, 1)) * (W - 2 * PAD);
-        const y = PAD + ((pts[i] - minV) / (maxV - minV)) * (H - 2 * PAD);
-        segs.push((started ? 'L' : 'M') + x.toFixed(1) + ',' + y.toFixed(1));
-        started = true;
+        if (pts[i] == null) { on = false; continue; }
+        const x = P + (i / Math.max(n - 1, 1)) * (W - 2 * P);
+        const y = P + ((pts[i] - mn) / (mx - mn)) * (H - 2 * P);
+        segs.push((on ? 'L' : 'M') + x.toFixed(1) + ',' + y.toFixed(1));
+        on = true;
       }
-      if (!segs.length) return '';
-      return '<path d="' + segs.join(' ') + '" fill="none" stroke="' + color + '" stroke-width="1.5" stroke-linecap="round"/>';
+      return segs.length ? '<path d="' + segs.join(' ') + '" fill="none" stroke="' + col + '" stroke-width="1.5" stroke-linecap="round"/>' : '';
     }
-
-    return '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="vertical-align:middle;">' +
-      toPath(desktopPts, 'var(--blue)') +
-      toPath(mobilePts, 'var(--orange)') +
-      '</svg>';
+    return '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="vertical-align:middle">' +
+      path(dp, 'var(--blue)') + path(mp, '#f97316') + '</svg>';
   }
 
-  // ── New Competitors ─────────────────────────────────────────
-  function renderNewCompetitors() {
-    const sec = document.getElementById('sec-newcompetitors');
-    const disc = DATA.discovered_competitors || {};
+  // ── Discovery ────────────────────────────────────
+  function renderDiscovery() {
+    const sec = document.getElementById('sec-discovery');
+    const disc = D.discovered_competitors || {};
     const unalerted = disc.unalerted || [];
     const all = disc.all || [];
+    let h = '';
 
-    let html = '';
     if (unalerted.length) {
-      html += '<div class="card"><h2>Newly Discovered Competitors</h2><div class="comp-cards">';
+      h += '<div class="card"><div class="card-header"><h2>Newly Discovered</h2>' +
+        '<span class="status-badge status-warn">' + unalerted.length + ' new</span></div>' +
+        '<div class="disc-grid">';
       for (const c of unalerted) {
-        html += '<div class="comp-card"><h3>' + esc(c.domain) + '</h3>';
-        html += '<p>First seen for: <strong>' + esc(c.first_seen_keyword) + '</strong> at position #' + (c.first_seen_position || '?') + '</p>';
-        html += '<p>Device: ' + esc(c.first_seen_device || '?') + '</p>';
-        html += '<p>Date: ' + esc(c.first_seen_date || '?') + '</p>';
-        if (c.first_seen_url) html += '<p><a href="' + esc(c.first_seen_url) + '" target="_blank" rel="noopener">View URL</a></p>';
-        html += '<p class="note">Not in your tracking list yet — add to config.json to track</p>';
-        html += '</div>';
+        h += '<div class="disc-card"><h3>' + esc(c.domain) + '</h3>';
+        h += '<p>Keyword: <strong>' + esc(c.first_seen_keyword) + '</strong> at #' + (c.first_seen_position || '?') + '</p>';
+        h += '<p>Device: ' + esc(c.first_seen_device || '?') + ' &middot; ' + esc(c.first_seen_date || '') + '</p>';
+        if (c.first_seen_url) h += '<p><a href="' + esc(c.first_seen_url) + '" target="_blank" rel="noopener">View page &rarr;</a></p>';
+        h += '<p class="action">Add to config.json to track</p></div>';
       }
-      html += '</div></div>';
-    } else {
-      html += '<div class="card"><h2>Newly Discovered Competitors</h2><p style="color:#888">No new unalerted competitors.</p></div>';
+      h += '</div></div>';
     }
 
     if (all.length) {
-      html += '<div class="card"><h2>All Discovered Competitors</h2><table><thead><tr>' +
-        '<th>Domain</th><th>First Seen Keyword</th><th>Position</th><th>Device</th><th>Date</th><th>Alerted</th><th>Notes</th>' +
-        '</tr></thead><tbody>';
+      h += '<div class="card"><div class="card-header"><h2>All Discovered Competitors</h2></div>' +
+        '<table><thead><tr><th>Domain</th><th>Keyword</th><th>Pos</th><th>Device</th><th>Date</th><th>Status</th></tr></thead><tbody>';
       for (const c of all) {
-        html += '<tr><td>' + esc(c.domain) + '</td><td>' + esc(c.first_seen_keyword) + '</td>';
-        html += '<td>' + (c.first_seen_position || '—') + '</td><td>' + esc(c.first_seen_device || '—') + '</td>';
-        html += '<td>' + esc(c.first_seen_date || '—') + '</td>';
-        html += '<td>' + (c.alerted ? '&#x2705;' : '&#x274C;') + '</td>';
-        html += '<td>' + esc(c.notes || '') + '</td></tr>';
+        h += '<tr><td class="kw-cell">' + esc(c.domain) + '</td><td>' + esc(c.first_seen_keyword) + '</td>';
+        h += '<td>' + rankBadge(c.first_seen_position) + '</td><td>' + esc(c.first_seen_device || '--') + '</td>';
+        h += '<td>' + esc(c.first_seen_date || '--') + '</td>';
+        h += '<td>' + (c.alerted ? '<span class="status-badge status-ok">Alerted</span>' : '<span class="status-badge status-warn">New</span>') + '</td></tr>';
       }
-      html += '</tbody></table></div>';
+      h += '</tbody></table></div>';
     }
-    sec.innerHTML = html || '<div class="card"><p style="color:#888">No discovered competitor data.</p></div>';
+
+    sec.innerHTML = h || '<div class="card"><div class="empty"><h2>No new competitors</h2><p>Auto-discovery monitors the top 5 results.</p></div></div>';
   }
 
-  // ── Redirects ───────────────────────────────────────────────
+  // ── Redirects ────────────────────────────────────
   function renderRedirects() {
     const sec = document.getElementById('sec-redirects');
-    const redir = DATA.redirect || {};
+    const redir = D.redirect || {};
     const health = redir.health || [];
     const consKw = redir.consolidation_by_keyword || [];
-    const overallPct = redir.overall_consolidation_pct || 0;
+    const pct = redir.overall_consolidation_pct || 0;
     const hist = redir.history_30_days || [];
     const sightings = redir.sightings_latest_run || [];
+    let h = '';
 
-    let html = '';
-
-    // 301 Health
+    // Health cards
     if (health.length) {
-      html += '<div class="card"><h2>301 Redirect Health</h2><div class="health-cards">';
-      for (const h of health) {
-        const ok = h.is_healthy;
-        html += '<div class="health-card ' + (ok ? 'healthy' : 'unhealthy') + '">';
-        html += '<strong>' + esc(h.old_domain) + '</strong> &rarr; ';
-        html += (ok ? '&#x2705; Healthy' : '&#x274C; UNHEALTHY') + '<br>';
-        html += '<span style="font-size:.82rem;color:#666;">Status: ' + (h.http_status || '?') + ' &middot; ';
-        html += 'Hops: ' + ((h.redirect_chain || []).length || '?') + ' &middot; ';
-        html += 'Checked: ' + fmtSGT(h.checked_at) + '</span>';
-        if (h.error) html += '<br><span style="font-size:.82rem;color:var(--red);">' + esc(h.error) + '</span>';
-        if (h.final_destination_url) html += '<br><span style="font-size:.78rem;color:#888;">&rarr; ' + esc(h.final_destination_url) + '</span>';
-        html += '</div>';
+      h += '<div class="health-grid">';
+      for (const x of health) {
+        const ok = x.is_healthy;
+        h += '<div class="health-card ' + (ok ? 'ok' : 'fail') + '">';
+        h += '<div class="domain">' + esc(x.old_domain) + ' &rarr; ' + (ok ? '&#x2705; 301 Healthy' : '&#x274C; UNHEALTHY') + '</div>';
+        h += '<div class="detail">HTTP ' + (x.http_status || '?') + ' &middot; ' + fmtSGT(x.checked_at) + '</div>';
+        if (x.final_destination_url) h += '<div class="detail">&rarr; ' + esc(x.final_destination_url) + '</div>';
+        if (x.error) h += '<div class="detail" style="color:var(--red)">' + esc(x.error) + '</div>';
+        h += '</div>';
       }
-      html += '</div></div>';
+      h += '</div>';
     }
 
-    // Overall progress
-    html += '<div class="card"><h2>Google Consolidation Progress</h2>';
-    const totalKw = consKw.length || 1;
-    const consolidated = consKw.filter(c => c.desktop_status === 'only_main' && c.mobile_status === 'only_main').length;
-    html += '<div class="progress-wrap"><div class="progress-label">' + overallPct + '% complete &mdash; ' + consolidated + ' of ' + consKw.length + ' keywords fully consolidated</div>';
-    html += '<div class="progress-bar"><div class="progress-fill" style="width:' + Math.min(overallPct, 100) + '%"></div></div></div></div>';
+    // Consolidation progress
+    const total = consKw.length || 1;
+    const done = consKw.filter(c => c.desktop_status === 'only_main' && c.mobile_status === 'only_main').length;
+    h += '<div class="card"><div class="card-header"><h2>Google Index Consolidation</h2></div>';
+    h += '<div class="progress-wrap"><div class="progress-label">' + pct + '% Complete</div>';
+    h += '<div class="progress-sublabel">' + done + ' of ' + consKw.length + ' keyword+domain combos fully consolidated</div>';
+    h += '<div class="progress-bar"><div class="progress-fill" style="width:' + Math.min(pct, 100) + '%"></div></div></div></div>';
 
-    // Per-keyword consolidation table
-    if (consKw.length) {
-      html += '<div class="card"><h2>Per-Keyword Consolidation</h2><table><thead><tr>' +
-        '<th>Keyword</th><th>Old Domain</th><th>Their Pos</th><th>My Pos</th><th>Desktop</th><th>Mobile</th><th>First Seen</th><th>Last Seen</th>' +
-        '</tr></thead><tbody>';
-      for (const c of consKw) {
-        html += '<tr><td><strong>' + esc(c.keyword) + '</strong></td>';
-        html += '<td>' + esc(c.old_domain) + '</td>';
-        html += '<td>' + (c.their_position || '—') + '</td>';
-        html += '<td>' + (c.my_position || '—') + '</td>';
-        html += '<td>' + statusIcon(c.desktop_status) + '</td>';
-        html += '<td>' + statusIcon(c.mobile_status) + '</td>';
-        html += '<td>' + esc(c.first_seen || '—') + '</td>';
-        html += '<td>' + esc(c.last_seen || '—') + '</td></tr>';
-      }
-      html += '</tbody></table></div>';
-    }
-
-    // Consolidation timeline chart
+    // Consolidation chart
     if (hist.length > 1) {
-      html += '<div class="chart-container"><h3 style="font-family:Georgia,serif;margin-bottom:12px;">Consolidation Timeline (30 Days)</h3>';
-      html += consolidationChart(hist);
-      html += '</div>';
+      h += '<div class="chart-wrap"><h3>Consolidation Timeline</h3>';
+      h += consolidationSVG(hist) + '</div>';
     }
 
-    // Sightings
-    if (sightings.length) {
-      html += '<div class="card"><h2>Old Domain Sightings (Latest Run)</h2><table><thead><tr>' +
-        '<th>Keyword</th><th>Device</th><th>Old Domain</th><th>Position</th><th>URL</th><th>Main Domain Pos</th><th>Gap</th><th>Status</th>' +
-        '</tr></thead><tbody>';
-      for (const s of sightings) {
-        html += '<tr><td>' + esc(s.keyword) + '</td><td>' + esc(s.device) + '</td>';
-        html += '<td>' + esc(s.old_domain) + '</td><td>' + (s.position || '—') + '</td>';
-        html += '<td>' + shortPath(s.url, 30) + '</td>';
-        html += '<td>' + (s.main_domain_position || '—') + '</td>';
-        html += '<td>' + (s.cannibalization_gap != null ? s.cannibalization_gap : '—') + '</td>';
-        html += '<td>' + statusIcon(s.status) + '</td></tr>';
+    // Per-keyword table
+    if (consKw.length) {
+      h += '<div class="card"><div class="card-header"><h2>Per-Keyword Status</h2></div>' +
+        '<table><thead><tr><th>Keyword</th><th>Old Domain</th><th>Desktop</th><th>Mobile</th></tr></thead><tbody>';
+      for (const c of consKw) {
+        h += '<tr><td class="kw-cell">' + esc(c.keyword) + '</td>';
+        h += '<td>' + esc(c.old_domain) + '</td>';
+        h += '<td>' + statusBadge(c.desktop_status) + '</td>';
+        h += '<td>' + statusBadge(c.mobile_status) + '</td></tr>';
       }
-      html += '</tbody></table></div>';
+      h += '</tbody></table></div>';
     }
 
-    sec.innerHTML = html || '<div class="card"><p style="color:#888">No redirect data available.</p></div>';
+    sec.innerHTML = h || '<div class="card"><div class="empty"><h2>No redirect data</h2><p>Redirect tracking will appear after the first run.</p></div></div>';
   }
 
-  function statusIcon(status) {
-    const map = {
-      'outranking': '<span class="status-icon" title="Old domain outranking">&#x1F534; outranking</span>',
-      'both_present': '<span class="status-icon" title="Both still indexed">&#x1F7E1; both present</span>',
-      'only_main': '<span class="status-icon" title="Consolidated">&#x2705; consolidated</span>',
-      'neither': '<span class="status-icon" title="Neither ranking">&#x2796; neither</span>'
+  function statusBadge(status) {
+    const m = {
+      'outranking': '<span class="status-badge status-bad">Outranking</span>',
+      'both_present': '<span class="status-badge status-warn">Both Present</span>',
+      'only_main': '<span class="status-badge status-ok">Consolidated</span>',
+      'only_redirect': '<span class="status-badge status-bad">Only Redirect</span>',
+      'neither': '<span class="status-badge status-muted">Neither</span>'
     };
-    return map[status] || esc(status || '—');
+    return m[status] || '<span class="status-badge status-muted">' + esc(status || '--') + '</span>';
   }
 
-  function consolidationChart(hist) {
-    const W = 600, H = 200, PAD_L = 40, PAD_R = 20, PAD_T = 10, PAD_B = 40;
-    const cW = W - PAD_L - PAD_R, cH = H - PAD_T - PAD_B;
+  function consolidationSVG(hist) {
+    const W = 600, H = 180, PL = 40, PR = 20, PT = 10, PB = 35;
+    const cW = W - PL - PR, cH = H - PT - PB;
     const n = hist.length;
-    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="max-width:100%;height:auto;">';
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="max-width:100%;height:auto">';
 
-    // Grid lines
-    for (let pct = 0; pct <= 100; pct += 25) {
-      const y = PAD_T + cH - (pct / 100) * cH;
-      svg += '<line x1="' + PAD_L + '" y1="' + y + '" x2="' + (W - PAD_R) + '" y2="' + y + '" stroke="#e5e0d8" stroke-width="1"/>';
-      svg += '<text x="' + (PAD_L - 5) + '" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="#999">' + pct + '%</text>';
+    // Grid
+    for (let p = 0; p <= 100; p += 25) {
+      const y = PT + cH - (p / 100) * cH;
+      svg += '<line x1="' + PL + '" y1="' + y + '" x2="' + (W - PR) + '" y2="' + y + '" stroke="var(--border-light)" stroke-width="1"/>';
+      svg += '<text x="' + (PL - 6) + '" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="var(--text-muted)">' + p + '%</text>';
     }
 
-    // Goal line at 100%
-    const goalY = PAD_T;
-    svg += '<line x1="' + PAD_L + '" y1="' + goalY + '" x2="' + (W - PAD_R) + '" y2="' + goalY + '" stroke="var(--green)" stroke-width="1" stroke-dasharray="5,3"/>';
-    svg += '<text x="' + (W - PAD_R + 2) + '" y="' + (goalY + 4) + '" font-size="9" fill="var(--green)">Goal</text>';
+    // Goal line
+    svg += '<line x1="' + PL + '" y1="' + PT + '" x2="' + (W - PR) + '" y2="' + PT + '" stroke="var(--green)" stroke-width="1" stroke-dasharray="4,3" opacity=".5"/>';
 
-    // Data line
+    // Area + line
     const pts = [];
     for (let i = 0; i < n; i++) {
-      const x = PAD_L + (i / Math.max(n - 1, 1)) * cW;
-      const pct = hist[i].pct != null ? hist[i].pct : 0;
-      const y = PAD_T + cH - (pct / 100) * cH;
-      pts.push(x.toFixed(1) + ',' + y.toFixed(1));
+      const x = PL + (i / Math.max(n - 1, 1)) * cW;
+      const p = hist[i].pct != null ? hist[i].pct : 0;
+      const y = PT + cH - (p / 100) * cH;
+      pts.push([x, y]);
     }
-    svg += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+
+    // Fill area
+    let area = 'M' + pts[0][0] + ',' + (PT + cH);
+    pts.forEach(p => area += 'L' + p[0].toFixed(1) + ',' + p[1].toFixed(1));
+    area += 'L' + pts[pts.length - 1][0] + ',' + (PT + cH) + 'Z';
+    svg += '<path d="' + area + '" fill="var(--green)" opacity=".08"/>';
+
+    // Line
+    let line = 'M' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1);
+    for (let i = 1; i < pts.length; i++) line += 'L' + pts[i][0].toFixed(1) + ',' + pts[i][1].toFixed(1);
+    svg += '<path d="' + line + '" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round"/>';
 
     // Dots
-    for (let i = 0; i < n; i++) {
-      const x = PAD_L + (i / Math.max(n - 1, 1)) * cW;
-      const pct = hist[i].pct != null ? hist[i].pct : 0;
-      const y = PAD_T + cH - (pct / 100) * cH;
-      svg += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="3" fill="var(--green)"/>';
-    }
+    pts.forEach(p => svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="var(--green)"/>');
 
-    // X-axis labels (show ~5 evenly spaced)
+    // X labels
     const step = Math.max(1, Math.floor(n / 5));
     for (let i = 0; i < n; i += step) {
-      const x = PAD_L + (i / Math.max(n - 1, 1)) * cW;
-      const label = hist[i].date || '';
-      svg += '<text x="' + x.toFixed(1) + '" y="' + (H - 5) + '" text-anchor="middle" font-size="9" fill="#999">' + esc(label) + '</text>';
+      svg += '<text x="' + pts[i][0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="9" fill="var(--text-muted)">' + esc(hist[i].date || '') + '</text>';
     }
-    // Always show last label
     if ((n - 1) % step !== 0) {
-      const x = PAD_L + cW;
-      svg += '<text x="' + x.toFixed(1) + '" y="' + (H - 5) + '" text-anchor="middle" font-size="9" fill="#999">' + esc(hist[n - 1].date || '') + '</text>';
+      svg += '<text x="' + pts[n - 1][0].toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="9" fill="var(--text-muted)">' + esc(hist[n - 1].date || '') + '</text>';
     }
 
     svg += '</svg>';
     return svg;
   }
 
-  // ── Run Log ─────────────────────────────────────────────────
-  function renderRunLog() {
-    const sec = document.getElementById('sec-runlog');
-    const logs = (DATA.run_log || []).slice(-10).reverse();
-    if (!logs.length) {
-      sec.innerHTML = '<div class="card"><p style="color:#888">No run log entries.</p></div>';
-      return;
-    }
-    let html = '<div class="card"><h2>Run Log (Last 10 Runs)</h2><table><thead><tr>' +
-      '<th>Time</th><th>Keywords Checked</th><th>API Calls</th><th>Status</th><th>Errors</th>' +
-      '</tr></thead><tbody>';
+  // ── Run Log ──────────────────────────────────────
+  function renderLog() {
+    const sec = document.getElementById('sec-log');
+    const logs = (D.run_log || []).slice(0, 10);
+    if (!logs.length) { sec.innerHTML = '<div class="card"><div class="empty"><h2>No runs yet</h2></div></div>'; return; }
+
+    let h = '<div class="card"><div class="card-header"><h2>Run Log</h2></div>' +
+      '<table><thead><tr><th>Time (SGT)</th><th>Keywords</th><th>API Calls</th><th>Status</th><th>Errors</th></tr></thead><tbody>';
     for (const l of logs) {
-      const statusCls = l.status === 'success' ? 'color:var(--green)' : (l.status === 'error' ? 'color:var(--red)' : '');
-      html += '<tr><td>' + fmtSGT(l.run_time) + '</td>';
-      html += '<td>' + (l.keywords_checked != null ? l.keywords_checked : '—') + '</td>';
-      html += '<td>' + (l.api_calls_used != null ? l.api_calls_used : '—') + '</td>';
-      html += '<td><span style="' + statusCls + '">' + esc(l.status || '—') + '</span></td>';
-      html += '<td>' + esc(l.errors || '—') + '</td></tr>';
+      const st = l.status === 'ok' ? 'status-ok' : l.status === 'partial_error' ? 'status-warn' : 'status-bad';
+      const errs = l.errors && l.errors !== '[]' ? l.errors : '--';
+      h += '<tr><td>' + fmtSGT(l.run_time) + '</td>';
+      h += '<td>' + (l.keywords_checked != null ? l.keywords_checked : '--') + '</td>';
+      h += '<td>' + (l.api_calls_used != null ? l.api_calls_used : '--') + '</td>';
+      h += '<td><span class="status-badge ' + st + '">' + esc(l.status || '--') + '</span></td>';
+      h += '<td style="font-size:.78rem;max-width:300px;overflow:hidden;text-overflow:ellipsis">' + esc(errs) + '</td></tr>';
     }
-    html += '</tbody></table></div>';
-    sec.innerHTML = html;
+    h += '</tbody></table></div>';
+    sec.innerHTML = h;
   }
 
 })();
