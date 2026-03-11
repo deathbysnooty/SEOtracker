@@ -497,6 +497,13 @@ def main():
                 organic_results = fetch_serp(keyword, device, config)
                 api_calls_used += 1
 
+                # Debug: show top 10 domains in results
+                print(f"  Results count: {len(organic_results)}")
+                for r in organic_results[:10]:
+                    dom = extract_domain(r.get("link", ""))
+                    pos = r.get("position")
+                    print(f"    #{pos}: {dom}")
+
                 process_serp_results(
                     conn, keyword, device, organic_results,
                     config, run_time, today, errors,
