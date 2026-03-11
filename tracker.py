@@ -176,7 +176,7 @@ def fetch_serp(keyword, device, config):
         "hl": config.get("hl", "en"),
         "location": config.get("location", "Singapore"),
         "device": device,
-        "num": 100,
+        "num": 10,
         "api_key": api_key,
     }
 
