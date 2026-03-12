@@ -1,13 +1,6 @@
 name: SEO Rank Tracker
 
 on:
-  schedule:
-    # 7:00 AM SGT (UTC+8) = 23:00 UTC previous day
-    - cron: '0 23 * * *'
-    # 1:00 PM SGT = 05:00 UTC
-    - cron: '0 5 * * *'
-    # 7:00 PM SGT = 11:00 UTC
-    - cron: '0 11 * * *'
   workflow_dispatch:
 
 permissions:

@@ -111,6 +111,22 @@ body {
   transition: width .5s ease;
 }
 
+/* ── Run Button ─────────────────────────────── */
+.run-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--green);
+  color: #fff;
+  border-radius: 8px;
+  font-size: .82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .15s;
+}
+.run-btn:hover { background: #047857; }
+
 /* ── Alerts ─────────────────────────────────── */
 .alerts { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 .alert {
@@ -438,6 +454,7 @@ tr:hover td { background: #fafbfd; }
       <span id="apiLabel">API: --</span>
       <div class="api-bar"><div class="api-bar-fill" id="apiFill"></div></div>
     </div>
+    <a href="https://github.com/deathbysnooty/SEOtracker/actions/workflows/track.yml" target="_blank" rel="noopener" class="run-btn">Run Tracker</a>
   </div>
 </div>
 
